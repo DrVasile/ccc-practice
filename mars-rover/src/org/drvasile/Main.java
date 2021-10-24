@@ -18,10 +18,11 @@ public class Main {
             System.out.println("Solution not implemented yet.");
         }
 
+        assert levelObj != null;
+
         boolean stillGoing = true;
         int idx = 1;
 
-        assert levelObj != null;
         while (true) {
             String filePath = "test-cases/level" + level + "/test" + idx + ".txt";
             stillGoing = new File(filePath).isFile();
@@ -40,7 +41,7 @@ public class Main {
     public static void main(String[] args) {
         solveLevel(1);
         solveLevel(2);
-        solveLevel(3);
-        solveLevel(4);
+        // solveLevel(3);
+        // solveLevel(4);
     }
 }
