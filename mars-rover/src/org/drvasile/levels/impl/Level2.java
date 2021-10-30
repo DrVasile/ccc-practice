@@ -1,6 +1,9 @@
 package org.drvasile.levels.impl;
 
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -10,20 +13,25 @@ public class Level2 implements Level
 {
     private String testFilePath;
 
-    public void setTestFilePath(String testFilePath) {
+    public void setTestFilePath(String testFilePath)
+    {
         this.testFilePath = testFilePath;
     }
 
-    public void solve() {
+    public void solve()
+    {
         double wheelBase = 0.0;
         double distance = 0.0;
         double steeringAngle = 0.0;
 
-        try (Scanner scanner = new Scanner(new FileReader(this.testFilePath))) {
+        try (Scanner scanner = new Scanner(new FileReader(this.testFilePath)))
+        {
             wheelBase = scanner.nextDouble();
             distance = scanner.nextDouble();
             steeringAngle = scanner.nextDouble();
-        } catch (Exception exception) {
+        }
+        catch (Exception exception)
+        {
             exception.printStackTrace();
         }
 
@@ -56,7 +64,9 @@ public class Level2 implements Level
                 y = radius * Math.sin(traversedAngle);
                 newAngle = Math.toDegrees(traversedAngle);
             }
-        } else {
+        }
+        else
+        {
             if (steeringAngle == 0)
             {
                 x = 0;
@@ -75,6 +85,16 @@ public class Level2 implements Level
             }
         }
 
-        System.out.println(df.format(x) + ' ' + df.format(y) + ' ' + df.format(newAngle));
+        try
+        {
+            File newFile = new File("output/level2/" + testFilePath.substring(testFilePath.indexOf('.') - 1));
+            FileWriter writer = new FileWriter(newFile.getAbsolutePath());
+            writer.write(df.format(x) + ' ' + df.format(y) + ' ' + df.format(newAngle));
+            writer.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

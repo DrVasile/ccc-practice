@@ -10,20 +10,31 @@ public class Level3 implements Level
 {
     private String testFilePath;
 
-    public void setTestFilePath(String testFilePath) {
+    public void setTestFilePath(String testFilePath)
+    {
         this.testFilePath = testFilePath;
     }
 
-    public void solve() {
+    public void solve()
+    {
+        int n;
         double wheelBase = 0.0;
-        double distance = 0.0;
-        double steeringAngle = 0.0;
 
-        try (Scanner scanner = new Scanner(new FileReader(this.testFilePath))) {
+        try (Scanner scanner = new Scanner(new FileReader(this.testFilePath)))
+        {
             wheelBase = scanner.nextDouble();
-            distance = scanner.nextDouble();
-            steeringAngle = scanner.nextDouble();
-        } catch (Exception exception) {
+            n = scanner.nextInt();
+
+            double distance = 0.0;
+            double direction = 0.0;
+
+            for (int i = 0; i < n; i++)
+            {
+                distance = scanner.nextDouble();
+                direction = scanner.nextDouble();
+            }
+        } catch (Exception exception)
+        {
             exception.printStackTrace();
         }
 

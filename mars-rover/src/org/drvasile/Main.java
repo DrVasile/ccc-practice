@@ -1,7 +1,6 @@
 package org.drvasile;
 
 import java.io.File;
-
 import org.drvasile.levels.Level;
 
 public class Main {
@@ -32,6 +31,7 @@ public class Main {
 
             levelObj.setTestFilePath(filePath);
             levelObj.solve();
+
             idx++;
         }
 
@@ -41,7 +41,7 @@ public class Main {
     public static void main(String[] args) {
         solveLevel(1);
         solveLevel(2);
-        // solveLevel(3);
+        solveLevel(3);
         // solveLevel(4);
     }
 }
