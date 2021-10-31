@@ -9,15 +9,8 @@ import java.util.Scanner;
 
 import org.drvasile.levels.Level;
 
-public class Level2 implements Level
+public class Level2 extends Level
 {
-    private String testFilePath;
-
-    public void setTestFilePath(String testFilePath)
-    {
-        this.testFilePath = testFilePath;
-    }
-
     public void solve()
     {
         double wheelBase = 0.0;
@@ -30,7 +23,7 @@ public class Level2 implements Level
             distance = scanner.nextDouble();
             steeringAngle = scanner.nextDouble();
         }
-        catch (Exception exception)
+        catch (IOException exception)
         {
             exception.printStackTrace();
         }
@@ -38,51 +31,29 @@ public class Level2 implements Level
         DecimalFormat df = new DecimalFormat("#0.00");
 
         double radius = wheelBase / Math.sin(Math.toRadians(Math.abs(steeringAngle)));
-        double traversedAngle = Math.abs(distance / radius);
-        System.out.println("Radius: " + radius);
-        System.out.println("Angle: " + traversedAngle + " | " + Math.toDegrees(traversedAngle));
+        double traversedAngle = distance / radius;
+
         double x = 0.0;
         double y = 0.0;
         double newAngle = 0.0;
 
-        // TODO: This needs to be revised because it's probably not 100% correct.
-        if (distance >= 0)
+        if (steeringAngle == 0)
         {
-            if (steeringAngle == 0)
-            {
-                x = 0;
-                y = distance;
-                newAngle = 0;
-            } else if (steeringAngle < 0)
-            {
-                x = -1.0 * radius + (radius * Math.cos(traversedAngle));
-                y = radius * Math.sin(traversedAngle);
-                newAngle = 360 - (Math.toDegrees(traversedAngle) % 360);
-            } else
-            {
-                x = radius - (radius * Math.cos(traversedAngle));
-                y = radius * Math.sin(traversedAngle);
-                newAngle = Math.toDegrees(traversedAngle);
-            }
+            x = 0;
+            y = distance;
+            newAngle = 0;
+        }
+        else if (steeringAngle < 0)
+        {
+            x = radius * (Math.cos(traversedAngle) - 1);
+            y = radius * Math.sin(traversedAngle);
+            newAngle = 360 - (Math.toDegrees(traversedAngle) % 360);
         }
         else
         {
-            if (steeringAngle == 0)
-            {
-                x = 0;
-                y = -distance;
-                newAngle = 0;
-            } else if (steeringAngle < 0)
-            {
-                x = -1.0 * radius + (radius * Math.cos(traversedAngle));
-                y = -1.0 * radius * Math.sin(traversedAngle);
-                newAngle = 90 + (Math.toDegrees(traversedAngle) % 360);
-            } else
-            {
-                x = radius - (radius * Math.cos(traversedAngle));
-                y = -1.0 * radius * Math.sin(traversedAngle);
-                newAngle = 360 - (Math.toDegrees(traversedAngle) % 360);
-            }
+            x = radius * (1  - Math.cos(traversedAngle));
+            y = radius * Math.sin(traversedAngle);
+            newAngle = (360 + Math.toDegrees(traversedAngle) % 360) % 360;
         }
 
         try

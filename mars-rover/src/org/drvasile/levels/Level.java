@@ -1,7 +1,13 @@
 package org.drvasile.levels;
 
-public interface Level
+public abstract class Level
 {
-    void setTestFilePath(String testFilePath);
-    void solve();
+    protected String testFilePath;
+
+    public void setTestFilePath(String testFilePath)
+    {
+        this.testFilePath = testFilePath;
+    }
+
+    public abstract void solve();
 }

@@ -9,15 +9,8 @@ import java.util.Scanner;
 
 import org.drvasile.levels.Level;
 
-public class Level1 implements Level
+public class Level1 extends Level
 {
-    private String testFilePath;
-
-    public void setTestFilePath(String testFilePath)
-    {
-        this.testFilePath = testFilePath;
-    }
-
     public void solve()
     {
         double a = 0.0;
